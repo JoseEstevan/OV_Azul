@@ -14,7 +14,7 @@ cc = CryptoCurrencies(key=ALPHAVANTAGE_API_KEY, output_format='pandas')
 
 resp = requests.get('https://www.alphavantage.co/query', params={
     'function': 'TIME_SERIES_DAILY_ADJUSTED',
-    'symbol': 'ITSA4.SA',
+    'symbol': 'AZUL4.SA.SA',
     'market': 'BRL',
     'apikey': ALPHAVANTAGE_API_KEY,
     'datatype': 'json',
@@ -32,18 +32,18 @@ def main():
     overview = '[OverView](https://github.com/JoseEstevan/OverView)'
     
     st.title(overview)
-    st.subheader('Itaúsa')
+    st.subheader('Azul')
     
     menu = ['OverView','Ações','Sobre']
     choice = st.sidebar.selectbox("Menu",menu)
-    financ = Image.open('Itasa.jpg')
+    financ = Image.open('Azul.jpg')
     
     if choice == 'OverView':
-        st.markdown("A Itaúsa (Itaúsa - Investimentos Itaú S/A) é uma holding brasileira, constituída como sociedade anônima de capital aberto e negociada na B3 sob os códigos ITSA3 e ITSA4. \nSua atividade principal é o controle de empresas do setor financeiro, sendo a principal delas o Banco Itaú Unibanco. \nAlém do Itaú Unibanco, a Itaúsa também controla empresas de outros segmentos. Entre essas, estão a Duratex (papel e celulose), Alpargatas (setor de calçados) e a Itautec (empresa de tecnologia da informação). \nAlém do controle das empresas supracitadas, a Itaúsa ainda detém participação na NTS, transportadora de gás natural. As operações controladas pela holding e a participação na NTS fazem da Itaúsa um dos maiores grupos privados do Brasil.")
-        st.subheader('Principais produtos e serviços comercializados pela Itaúsa')
-        st.markdown('A atividade principal da Itaúsa é controle e gestão de outras empresas. O principal segmento de atuação da empresa é o setor financeiro, por meio do qual, oferta serviços financeiros básicos, operações de crédito, financiamentos até serviços especializados relativos a investimentos. Além do setor financeiro, a Itaúsa controla empresas dos ramos de papel e celulose, calçados, transporte de gás e tecnologia. A gestão dessas companhias faz da Itaúsa um dos principais conglomerados privados no Brasil.')
+        st.markdown("A Azul (Azul Linhas Aéreas Brasileiras S/A) é uma empresa brasileira do setor de transporte aéreo, constituída como sociedade anônima de capital aberto e negociada na B3 sob o código AZUL4. Sua atividade principal é o transporte aéreo de passageiros. O foco da Azul são as rotas aéreas regionais dentro do Brasil. Nesse sentido, a empresa possui atuação em quase todos os estados brasileiros. Além de operar com voos para as capitais, a companhia também realiza rotas para aeroportos menores no interior do país. A Azul também realiza voos internacionais para destinos selecionados e opera voos para Estados Unidos, Argentina, Uruguai, Guiana, França e Portugal. Em Portugal, Argentina e Estados Unidos, a companhia realiza voos para mais de um destino.")
+        st.subheader('Principais produtos e serviços comercializados pela Azul')
+        st.markdown('A atividade principal da Azul é o transporte aéreo de passageiros. As rotas operadas pela Azul possuem foco em voos regionais dentro do Brasil, com mais de 100 destinos diferentes.Além dos voos regionais, a Azul também realiza rotas internacionais. A empresa opera voos saindo do Brasil para países como Estados Unidos, Argentina, Uruguai, Guiana, França e Portugal.')
         st.image(financ, width=1200)
-        d = {'Receita Líquida': [5.008, 5.375, 4.969, 4.687, 4.885, 5.021, 5.289, 4.883],'Custos': [3.718, 4.006, 3.674, 3.641, 3.731, 3.767, 3.729, 3.567], 'Lucro Líquido': [10.569, 9.710, 8.263, 8.216, 8.994, 8.161, 6.011,  4.836], 'Ano': [20191231, 20181231, 20171231, 20161231, 20151231 ,20141231, 20131231, 20121231]}
+        d = {'Receita Líquida': [11.442, 9.057, 7.704, 6.669, 6.257, 5.803],'Custos': [-11.366,	-6.791,	-5.520,	-5.451,	-5.637,	-4.743], 'Lucro Líquido': [-2.403, -635, 424, -126, -1.074,-65], 'Ano': [20191231, 20181231, 20171231, 20161231, 20151231 ,20141231]}
         datad= pd.DataFrame(data=d)
         datad['Ano'] = datad['Ano'].apply(lambda x: pd.to_datetime(int(x), format="%Y%m%d"))  
         graph1 = px.line(datad,x="Ano", y="Receita Líquida", title='Receita Líquida em Bilhões', height=600, width=1000)
@@ -54,6 +54,7 @@ def main():
         
         graph2 = px.line(datad,x="Ano", y="Lucro Líquido", title='Lucro Líquido em Bilhões', height=600, width=1000)
         st.plotly_chart(graph2) 
+        st.text('Obs: Os valores com decimais estão em Bilhões, os outros estão em Milhões.')
         #st.image()
         #st.image([image1,image2])
 
