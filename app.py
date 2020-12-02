@@ -14,7 +14,7 @@ cc = CryptoCurrencies(key=ALPHAVANTAGE_API_KEY, output_format='pandas')
 
 resp = requests.get('https://www.alphavantage.co/query', params={
     'function': 'TIME_SERIES_DAILY_ADJUSTED',
-    'symbol': 'AZUL4.SA.SA',
+    'symbol': 'AZUL4.SA',
     'market': 'BRL',
     'apikey': ALPHAVANTAGE_API_KEY,
     'datatype': 'json',
